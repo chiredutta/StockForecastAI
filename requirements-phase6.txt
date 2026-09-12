@@ -1,0 +1,10 @@
+numpy>=1.26
+pandas>=2.2
+scikit-learn>=1.5
+yfinance>=0.2.54
+pyyaml>=6.0
+xgboost>=2.1
+lightgbm>=4.5
+optuna>=4.0
+pandas-market-calendars>=5.3
+jinja2>=3.1

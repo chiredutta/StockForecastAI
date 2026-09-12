@@ -1,0 +1,64 @@
+ticker: VINYLINDIA.NS
+start: "2018-01-01"
+horizon: 7
+context: 504
+min_train: 756
+random_state: 42
+
+holdout:
+  sessions: 252
+  step: 5
+
+calendar:
+  name: XNSE
+  fallback_to_business_days: true
+
+targets: [High, Low]
+
+models:
+  tabular: [xgboost, lightgbm, random_forest]
+  foundation: [kronos, chronos2, timesfm3, moirai2, sundial]
+
+optimization:
+  enabled: true
+  n_trials: 20
+  inner_folds: 6
+  inner_step: 10
+  timeout_seconds: 0
+
+regime:
+  enabled: true
+  n_components: 4
+  min_samples: 252
+
+ensemble:
+  temperature: 0.35
+  min_weight: 0.04
+  max_weight: 0.60
+  regime_min_observations: 3
+
+intervals:
+  levels: [0.80, 0.95]
+
+signal:
+  buy_upside_pct: 4.0
+  sell_downside_pct: -4.0
+  min_confidence: 0.55
+
+strategy:
+  initial_capital: 100000.0
+  transaction_cost_bps: 10
+  slippage_bps: 10
+  allow_short: false
+  max_position_fraction: 1.0
+
+drift:
+  rolling_window: 20
+  error_multiplier_alert: 1.5
+  minimum_history: 40
+
+promotion:
+  min_holdout_points: 10
+  max_relative_mae_vs_best: 1.15
+
+report_dir: reports/phase6
